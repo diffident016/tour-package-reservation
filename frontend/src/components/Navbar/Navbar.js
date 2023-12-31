@@ -67,7 +67,7 @@ class Navbar extends Component {
             <Link to="/add">
               <button className="btn btn-info mr-2" type="submit">
                 <i class="fa fa-tag" aria-hidden="true"></i>&nbsp;
-                TourReservation
+                TouristSpot
               </button>
             </Link>
 
