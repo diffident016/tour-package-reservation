@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 
+require("dotenv").config();
+
 const app = express();
 
 //Define the port
@@ -40,7 +42,7 @@ app.get("/", (req, res) => {
 //Database Connection
 mongoose
   .connect(
-    "mongodb+srv://root:bunny@cluster0-alh36.gcp.mongodb.net/Tourism?retryWrites=true&w=majority",
+    process.env.DB,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {

@@ -104,7 +104,7 @@ class SignUpForm extends Component {
       .then(function (callback) {
         console.log(callback.json());
         // alert("Submitted Successfully!");
-       
+
       })
       .catch((error) => {
         console.log(error);
@@ -182,7 +182,7 @@ class SignUpForm extends Component {
                 type="password"
                 onChange={this.inputChangeHandler}
                 className="form-control"
-                id="exampleInputPassword1"
+                id="exampleInputPassword2"
                 value={this.state.conPassword}
                 required
               />
