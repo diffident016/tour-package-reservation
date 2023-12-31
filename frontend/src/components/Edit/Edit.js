@@ -42,7 +42,6 @@ class Edit extends Component {
         tnumber: keyword,
         tname: "",
         tdescription: "",
-        price: "",
       }),
     })
       .then((callback) => callback.json())
@@ -51,10 +50,9 @@ class Edit extends Component {
           {
             tname: callbackJson[0].tname,
             tdescription: callbackJson[0].tdescription,
-            price: callbackJson[0].price,
             tnumber: callbackJson[0].tnumber,
           },
-          function () {}
+          function () { }
         );
       })
       .catch((error) => {
@@ -99,7 +97,7 @@ class Edit extends Component {
       }),
     })
       .then((callback) => callback.json())
-      .then((callbackJson) => {})
+      .then((callbackJson) => { })
       .catch((error) => {
         console.log(error);
       });
@@ -153,7 +151,7 @@ class Edit extends Component {
           <br></br>
           <br></br>
           <br></br>
-          <h1 className="y"><img src={cancelled}></img>&nbsp;Update/Delete Tour Packages</h1>
+          <h1 className="y"><img src={cancelled}></img>&nbsp;Update/Delete Tourist Spots</h1>
           <br></br>
           <br></br>
           <br></br>
@@ -163,7 +161,7 @@ class Edit extends Component {
           <form onSubmit={this.onSubmitHandler}>
             <div className="form-group">
               <label className="text-left">
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Tour
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Tourist Spot
                 Number
               </label>
               <input
@@ -190,8 +188,7 @@ class Edit extends Component {
           <form onSubmit={this.onSubmitHandler}>
             <div className="form-group">
               <label className="text-left">
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Tour
-                Number
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Tourist Spot Number
               </label>
               <input
                 name="tnumber"
@@ -205,7 +202,7 @@ class Edit extends Component {
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">
-                <i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;Tour Name
+                <i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;Tourist Spot Name
               </label>
               <input
                 name="tname"
@@ -218,7 +215,7 @@ class Edit extends Component {
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">
-                <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Tour
+                <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
                 Description
               </label>
               <input
@@ -230,7 +227,7 @@ class Edit extends Component {
                 required
               />
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="exampleInputPassword1">
                 <i class="fa fa-money" aria-hidden="true"></i>&nbsp;Tour Price
               </label>
@@ -242,7 +239,7 @@ class Edit extends Component {
                 value={this.state.tprice}
                 required
               />
-            </div>
+            </div> */}
             <br></br>
             <br></br>
             <div className="form-group">

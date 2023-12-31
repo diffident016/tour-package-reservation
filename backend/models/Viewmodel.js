@@ -10,10 +10,6 @@ const UsersSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    price: {
-      type: String,
-      required: true,
-    },
     tnumber: {
       type: String,
       required: true,

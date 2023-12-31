@@ -67,13 +67,13 @@ class Navbar extends Component {
             <Link to="/add">
               <button className="btn btn-info mr-2" type="submit">
                 <i class="fa fa-tag" aria-hidden="true"></i>&nbsp;
-                TouristSpot
+                Reservation
               </button>
             </Link>
 
             <Link to="/view">
               <button className="btn btn-success mr-2" type="submit">
-                <i class="fa fa-car" aria-hidden="true"></i>&nbsp; TourPackages
+                <i class="fa fa-car" aria-hidden="true"></i>&nbsp; TouristSpots
               </button>
             </Link>
 
