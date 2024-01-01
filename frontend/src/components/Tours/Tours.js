@@ -8,12 +8,10 @@ import { createHashHistory } from "history";
 const initialState = {
   tname: "",
   tdescription: "",
-  price: "",
   tnumber: "",
 
   tnameerror: "",
   tdescriptionerror: "",
-  priceerror: "",
   tnumbererror: "",
 
   username: "",
@@ -33,7 +31,6 @@ class Tours extends React.Component {
   validate = () => {
     let tnameerror = "";
     let tdescriptionerror = "";
-    let priceerror = "";
     let tnumbererror = "";
 
     if (!this.state.tname) {
@@ -43,18 +40,14 @@ class Tours extends React.Component {
     if (!this.state.tdescription) {
       tdescriptionerror = "This field is required";
     }
-    if (!this.state.price) {
-      priceerror = "This field is required";
-    }
     if (!this.state.tnumber) {
       tnumbererror = "This field is required";
     }
 
-    if (tnameerror || tdescriptionerror || priceerror || tnumbererror) {
+    if (tnameerror || tdescriptionerror || tnumbererror) {
       this.setState({
         tnameerror,
         tdescriptionerror,
-        priceerror,
         tnumbererror,
       });
       return false;
@@ -68,7 +61,6 @@ class Tours extends React.Component {
     if (isValid) {
       console.log(this.state.tname);
       console.log(this.state.tdescription);
-      console.log(this.state.price);
       console.log(this.state.tnumber);
 
       //clear form
@@ -78,7 +70,6 @@ class Tours extends React.Component {
     if (
       this.state.tname == null &&
       this.state.tdescription == null &&
-      this.state.price == null &&
       this.state.tnumber == null
     ) {
       return alert("Cannot submit empty fields");
@@ -92,7 +83,6 @@ class Tours extends React.Component {
       body: JSON.stringify({
         tname: this.state.tname,
         tdescription: this.state.tdescription,
-        price: this.state.price,
         tnumber: this.state.tnumber,
       }),
     })
@@ -106,7 +96,6 @@ class Tours extends React.Component {
     this.setState({
       tname: "",
       tdescription: "",
-      price: "",
       tnumber: "",
     });
   };
@@ -127,7 +116,7 @@ class Tours extends React.Component {
       <div className="container">
         <Link to="/edit">
           <button className="btn btn-danger ml-2">
-            <i className="fa fa-trash-o"></i>&nbsp; Upadate/Delete Tour Packages
+            <i className="fa fa-trash-o"></i>&nbsp; Update/Delete Tourist Spot
           </button>
         </Link>
         <form onSubmit={this.formSubmitHandler}>
@@ -138,7 +127,7 @@ class Tours extends React.Component {
 
             <h1 className="o">
               {" "}
-              <img src={add}></img>&nbsp;Add Tour Packages
+              <img src={add}></img>&nbsp;Add Tourist Spot
             </h1>
             <br></br>
             <br></br>
@@ -149,7 +138,7 @@ class Tours extends React.Component {
             <form onSubmit={this.onSubmitHandler}>
               <div className="form-group">
                 <label className="text-left">
-                  <i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;Tour
+                  <i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;Tourist Spot
                   Name
                 </label>
                 <input
@@ -169,7 +158,7 @@ class Tours extends React.Component {
 
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Tour
+                  <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
                   Description
                 </label>
                 <input
@@ -186,7 +175,7 @@ class Tours extends React.Component {
                 </div>
               </div>
 
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="exampleInputPassword1">
                   <i class="fa fa-money" aria-hidden="true"></i>&nbsp;Price of
                   the Tour
@@ -203,12 +192,12 @@ class Tours extends React.Component {
                 <div style={{ fontSize: 12, color: "red" }}>
                   {this.state.priceerror}
                 </div>
-              </div>
+              </div> */}
 
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">
                   <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                  &nbsp;Tour Number
+                  &nbsp;Tourist Spot Number
                 </label>
                 <input
                   name="tnumber"
@@ -235,8 +224,7 @@ class Tours extends React.Component {
                 </button>
                 <Link to="/view">
                   <button className="btn btn-info ml-2">
-                    <i className="fa fa-arrow-left"></i>&nbsp; Back to Tour
-                    Packages
+                    <i className="fa fa-arrow-left"></i>&nbsp; Back to Tourist Spots
                   </button>
                 </Link>
               </div>

@@ -29,7 +29,7 @@ export class ViewTours extends Component {
       <div className={"container"}>
         <br></br>
         <div className={"justify-content-center"}>
-          <h1 className="rr">Tour Packages</h1>
+          <h1 className="rr">Tourist Spots</h1>
         </div>
         <br></br>
         <br></br>
@@ -45,20 +45,16 @@ export class ViewTours extends Component {
                 <h5 className="card-title">{value.tname}</h5>
                 <p className="card-text justufy">{value.tdescription}</p>
                 <br />
-                <p className="card-text mb-0 p-8">
-                  <b>Price: </b>
-                  {value.price}
-                </p>
                 <p className="card-text">
-                  <b>Package No: </b>
+                  <b>Tourist Spot No: </b>
                   {value.tnumber}
                 </p>
                 <Link to="/add">
-                <div class="text-center">
-                  <a href="#" class="btn btn-primary">
-                    Book Now
-                  </a>
-                </div>
+                  <div class="text-center">
+                    <a href="#" class="btn btn-primary">
+                      Visit Now
+                    </a>
+                  </div>
                 </Link>
               </div>
             </div>

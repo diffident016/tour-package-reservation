@@ -148,7 +148,7 @@ class Add extends React.Component {
 
             <h1 className="o">
               {" "}
-              <img src={additional}></img>&nbsp;Tour Package Reservation
+              <img src={additional}></img>&nbsp;Tourist Spot Reservation
             </h1>
             <br></br>
             <br></br>
