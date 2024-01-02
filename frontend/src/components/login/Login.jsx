@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import "./loginStyles.css";
 import { fakeAuth } from "./MyHome";
 import swal from "sweetalert";
 import person from "./person.png";
 import { Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 
 class Login extends Component {
   constructor(props) {
@@ -11,20 +12,30 @@ class Login extends Component {
     this.state = {
       adminEmail: "",
       adminPassword: "",
+      recaptchaRef: null
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log(localStorage.getItem('authToken'));
-    if(localStorage.getItem('authToken')){
-      window.location.href="/tours"
+    if (localStorage.getItem('authToken')) {
+      window.location.href = "/tours"
     }
+
+
   }
+
+
 
   onSubmitHandler = (e) => {
     //Validation
-    if (this.state.adminEmail == null && this.state.adminPassword == null) {
-      return alert("Cannot submit empty fields");
+
+    if (this.state.adminEmail == "" && this.state.adminPassword == "") {
+      return swal("Error!", "Cannot submit empty fields.", "error");
+    }
+
+    if (!this.state.recaptchaRef) {
+      return swal("reCAPTCHA Failed", "Please complete reCAPTCHA verification.", "error");
     }
 
     // console.log(this.state.adminEmail);
@@ -54,7 +65,7 @@ class Login extends Component {
             this.props.loginFunc
           );
           swal("Logged in successfully!", "No warnings!", "success");
-        }else{
+        } else {
           swal("Error!", "Incorrect Credentials", "error");
         }
       })
@@ -88,14 +99,14 @@ class Login extends Component {
                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Admin Name
               </label>
               <input
+                required
                 name="adminEmail"
                 onChange={this.onChangeHandler}
-                type="email"
+                type="text"
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 value={this.state.adminEmail}
-                required
               />
             </div>
 
@@ -114,7 +125,14 @@ class Login extends Component {
                 required
               />
             </div>
-
+            <ReCAPTCHA
+              onChange={(e) => {
+                this.setState({
+                  recaptchaRef: e,
+                });
+              }}
+              sitekey="6Lc0tT8pAAAAAFdCInz-l12JGAFY-Rup18ypNq1W"
+            />
             <button
               type="button"
               className="submit-button"
