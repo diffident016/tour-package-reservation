@@ -1,0 +1,89 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.a{
+    font-size: 50%;
+    color: rgb(255, 255, 255);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    text-align: center;
+    margin-top: 5%;
+ 
+}
+
+.dashboard-panel{
+    margin-top: 20px;
+    width: 95%;
+    height: 450px;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    gap: 10px;
+    position: relative;
+}
+
+.weather-panel{
+    padding: 12px;
+    width: 70%;
+    height: 100%;
+    border: solid 1px #d4d2d2;
+    border-radius: 10px;
+}
+
+.map-panel{
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    border: solid 1px #d4d2d2;
+    border-radius: 10px;
+}
+
+.leaflet-div-icon {
+    background: none !important;
+    border: none !important;
+  }
+
+.panel-title{
+    font-size: 18px;
+    text-align: center;
+}
+
+.temp-container{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.temp{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.weather{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.address{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.location-label{
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.d{
+    font-size: 350%;
+}
+.q{
+    background-color: #ffffff;
+}
+
+
+

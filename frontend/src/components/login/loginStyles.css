@@ -1,6 +1,6 @@
 .login-parent {
     margin-top: 10vh;
-    height: 70vh;
+    height: 90vh;
     width: 50%;
     margin-left: auto;
     margin-right: 25%;
@@ -13,12 +13,12 @@
     background-color: #17A2B8;
     width: 100%;
     margin-top: 5vh;
-    
+    height: 45px;
 }
 
 .login-name {
     background-color: #17A2B8;
-    height: 70vh;
+    height: 90vh;
     width: 40%;
     display: flex;
     text-align: center;
@@ -29,9 +29,28 @@
     color: white;
 }
 
+.provider-container{
+    gap: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.icon{
+    width: 38px;
+    cursor: pointer;
+}
+
+.s-or{
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+}
+
 .login-form {
     width: 60%;
-    height: 70vh;
+    height:90vh;
     border: 3px solid #17A2B8;
     padding: 8%;
 }
