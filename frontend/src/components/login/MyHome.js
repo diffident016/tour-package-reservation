@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import Login from "./Login";
 import SignUp from "../signup/SignUp";
 import Navbar from "../Navbar/Navbar";
@@ -11,65 +11,103 @@ import ViewTours from "../ViewTours//ViewTours";
 
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
-  Redirect,
-  useHistory,
+  Navigate,
   useLocation,
+  useNavigate
 } from "react-router-dom";
 import HomePage from "../HomePage/HomePage";
+import AdminDashboard from "../AdminDashboard/AdminDashboard";
 
-export default class MyHome extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Switch>
-            <Route exact path="/" render={() => <Redirect to="/home" />} />
+function MyHome() {
 
-            <Route path="/home" exact component={HomePage}></Route>
+  useEffect(() => {
 
-            <Route path="/dashboard" exact component={Dashboard}></Route>
+    const getUser = () => {
+      fetch("http://localhost:5000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          console.log(resObject);
+          localStorage.setItem("username", resObject.username);
+          localStorage.setItem("authToken", resObject.authToken);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+  return (
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
 
-            <Route path="/contact" exact component={Contact}></Route>
+          <Route path="/dashboard" exact element={<Dashboard />}></Route>
 
-            <Route path="/add" exact component={Add}></Route>
+          <Route path="/contact" exact element={<Contact />}></Route>
 
-            {/* <PrivateRoute path="/dashboard">
+          <Route path="/add" exact element={<Add />}></Route>
+
+          {/* <PrivateRoute path="/dashboard">
               <AuthButton />
               <Dashboard />
             </PrivateRoute> */}
 
-            {/* <PrivateRoute path="/add">
+          {/* <PrivateRoute path="/add">
               <AuthButton />
               <Add />
             </PrivateRoute> */}
 
-            <Route path="/login" exact component={LoginPage}></Route>
+          <Route path="/login" exact element={<LoginPage />}></Route>
 
-            <Route path="/signup" exact component={SignUp}></Route>
+          <Route path="/signup" exact element={<SignUp />}></Route>
 
-            <Route path="/edit" exact component={Edit}></Route>
+          <Route path="/edit" exact element={<Edit />}></Route>
 
-            <Route path="/view" exact component={ViewTours}></Route>
+          <Route path="/view" exact element={<ViewTours />}></Route>
 
-            <PrivateRoute path="/tours" exact component={Tours} loggedIn={function(){console.log(localStorage.getItem('authToken')); if(localStorage.getItem('authToken')){return true}else{return false}}}></PrivateRoute>
+          <Route path="/tours"
+            element={
+              <PrivateRoute>
+                <Tours />
+              </PrivateRoute>
+            }
+          />
 
-            
-
-            {/* <Route path="/signup" component={SignUp}></Route> */}
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+          <Route path="/admin"
+            element={
+              <PrivateRoute>
+                <AdminDashboard />
+              </PrivateRoute>
+            }
+          />
+          {/* <Route path="/signup" component={SignUp}></Route> */}
+        </Routes>
+      </div>
+    </Router>
+  )
 }
+
+export default MyHome
 
 //Authentication of Login
 export const fakeAuth = {
   isAuthenticated: false,
-  
+
   authenticate(cb) {
     fakeAuth.isAuthenticated = true;
     setTimeout(cb, 100); // fake async
@@ -80,54 +118,51 @@ export const fakeAuth = {
   },
 };
 
-function AuthButton() {
-  let history = useHistory();
+// function AuthButton() {
+//   let history = useHistory();
 
-  return fakeAuth.isAuthenticated ? (
-    <div className={"row justify-content-center  p-2"}>
-      {/* <label className={"text-black mr-5"}>You are now logged in...</label> */}
+//   return fakeAuth.isAuthenticated ? (
+//     <div className={"row justify-content-center  p-2"}>
+//       {/* <label className={"text-black mr-5"}>You are now logged in...</label> */}
 
-      {/* <button
-        className={"btn btn-danger"}
-        onClick={() => {
-          fakeAuth.signOut(() => history.push("/home"));
-        }}
-      >
-        <i className="fa fa-send"></i>&nbsp; Sign out
-      </button> */}
-    </div>
-  ) : (
-    <div>
-      <p>You are not logged in.</p>
-      <button type={"button"} onClick={LoginPage()}>
-        Log in
-      </button>
-    </div>
-  );
-}
+//       {/* <button
+//         className={"btn btn-danger"}
+//         onClick={() => {
+//           fakeAuth.signOut(() => history.push("/home"));
+//         }}
+//       >
+//         <i className="fa fa-send"></i>&nbsp; Sign out
+//       </button> */}
+//     </div>
+//   ) : (
+//     <div>
+//       <p>You are not logged in.</p>
+//       <button type={"button"} onClick={LoginPage()}>
+//         Log in
+//       </button>
+//     </div>
+//   );
+// }
 
-function PrivateRoute({ component: Comp, loggedIn, path, ...rest }) {
-  return (
-    <Route
-      path={path}
-      {...rest}
-      render={props => {
-        return loggedIn ? <Comp {...props} /> : <Redirect to="/login" />;
-      }}
-    />
-  );
+function PrivateRoute({ children }) {
+
+  console.log('hello')
+  let auth = localStorage.getItem('authToken');
+
+  return auth ? children : <Navigate to="/login" />;
+
 }
 
 function LoginPage() {
-  let history = useHistory();
+  let navigate = useNavigate();
   let location = useLocation();
 
-  let { from } = location.state || { from: { pathname: "/tours" } };
+  let { from } = location.state || { from: { pathname: "/tours" } } || { from: { pathname: "/admin" } };
 
   //here login is a callback function
   let login = () => {
     fakeAuth.authenticate(() => {
-      history.replace(from);
+      navigate(from)
     });
   };
 

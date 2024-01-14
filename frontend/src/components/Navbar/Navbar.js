@@ -3,7 +3,6 @@ import "./NavbarStyles.css";
 import { Link } from "react-router-dom";
 import saka from "./saka.jpg";
 import swal from "sweetalert";
-import { createHashHistory } from "history";
 
 class Navbar extends Component {
   constructor(props) {
@@ -16,6 +15,7 @@ class Navbar extends Component {
       localStorage.clear();
       window.location.href = "/login";
       swal("Logged Out!", "Successfully Logged Out", "success");
+      window.open("http://localhost:5000/auth/logout", "_self");
     } else {
       swal("Not Logged In!", "Please Login first", "warning");
     }
@@ -42,6 +42,11 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <div className="r"></div>
           <div className="navbar-buttons ml-auto">
+            <Link to="/admin">
+              <button className="btn btn-success mr-2" type="submit">
+                <i class="fa fa-home" aria-hidden="true"></i>&nbsp; Dashboard
+              </button>
+            </Link>
             <Link to="/login">
               <button className="btn btn-danger mr-2" type="submit">
                 <i class="fa fa-user" aria-hidden="true"></i>&nbsp; Login
@@ -52,7 +57,7 @@ class Navbar extends Component {
                 <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; AboutUs
               </button>
             </Link>
-            <Link to="/home">
+            <Link to="/">
               <button className="btn btn-success mr-2" type="submit">
                 <i class="fa fa-home" aria-hidden="true"></i>&nbsp; Home
               </button>

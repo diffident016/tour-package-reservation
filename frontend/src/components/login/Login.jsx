@@ -5,6 +5,8 @@ import swal from "sweetalert";
 import person from "./person.png";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import fbIcon from './fb.png';
+import googleIcon from './google.png'
 
 class Login extends Component {
   constructor(props) {
@@ -82,7 +84,17 @@ class Login extends Component {
     });
   };
 
+
   render() {
+
+    const google = () => {
+      window.open("http://localhost:5000/auth/google", "_self");
+    };
+
+    const facebook = () => {
+      window.open("http://localhost:5000/auth/facebook", "_self");
+    };
+
     return (
       <div className="login-parent">
         <div className="login-name">
@@ -141,6 +153,14 @@ class Login extends Component {
               <i className="fa fa-send"></i>&nbsp; Login
             </button>
           </form>
+          <div>
+            <p className="s-or">OR SIGN-IN WITH</p>
+            <div className="provider-container">
+              <img onClick={google} className="icon" src={googleIcon} />
+              <img onClick={facebook} className="icon" src={fbIcon} />
+            </div>
+          </div>
+
         </div>
       </div>
     );

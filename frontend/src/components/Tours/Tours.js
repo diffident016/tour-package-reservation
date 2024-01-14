@@ -3,7 +3,6 @@ import "./Tours.css";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import add from "./add.png";
-import { createHashHistory } from "history";
 
 const initialState = {
   tname: "",
