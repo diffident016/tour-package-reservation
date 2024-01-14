@@ -10,6 +10,8 @@ const passport = require("passport");
 
 require("dotenv").config();
 
+require("dotenv").config();
+
 const app = express();
 
 //Define the port

@@ -23,7 +23,11 @@ class Login extends Component {
     if (localStorage.getItem('authToken')) {
       window.location.href = "/tours"
     }
+
+
   }
+
+
 
   onSubmitHandler = (e) => {
     //Validation
