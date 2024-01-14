@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+const session = require('cookie-session')
+require('./passport.js')
+const passport = require("passport");
+
 
 require("dotenv").config();
 
@@ -11,8 +15,33 @@ const app = express();
 //Define the port
 const port = process.env.PORT || 5000;
 
+app.use(
+  session({ name: "session", keys: ["diffident016.tracc"], maxAge: 24 * 60 * 60 * 100 })
+);
+
+const regenerate = callback => {
+  console.log('regenerating')
+  callback()
+}
+const save = callback => {
+  console.log('saving')
+  callback()
+}
+app.use((req, res, next) => {
+  req.session.regenerate = regenerate
+  req.session.save = save
+  next()
+})
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 //Allow CORS
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000",
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true,
+}));
 
 //Initialize Body Parser
 app.use(bodyParser.json());
