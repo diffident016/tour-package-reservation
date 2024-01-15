@@ -14,12 +14,8 @@
     "react-bootstrap": "^1.6.1",
     "react-dom": "^16.14.0",
     "react-google-recaptcha": "^3.1.0",
-<<<<<<< HEAD
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.21.2",
-=======
-    "react-router-dom": "^5.2.0",
->>>>>>> main
     "react-scripts": "^5.0.1",
     "sweetalert": "^2.1.2"
   },
